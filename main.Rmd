@@ -1,0 +1,36 @@
+---
+title: "CSV to R converter"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+library(arrow)
+```
+
+```{r}
+df <- read_csv("./Data8317.zip")
+```
+
+```{r}
+df %>% nrow()
+```
+
+```{r}
+format(object.size(df),units="Gb")
+```
+
+```{r}
+df %>% head(10)
+```
+
+```{r}
+df %>% write_rds("Data8317.rds",compress="bz2")
+```
+
+
+```{r}
+arrow::write_dataset(df, format="arrow",path=".")
+```
+
